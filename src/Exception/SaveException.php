@@ -24,12 +24,12 @@ class SaveException extends \Exception implements \IteratorAggregate, \Countable
         );
     }
 
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->results);
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->results);
     }
