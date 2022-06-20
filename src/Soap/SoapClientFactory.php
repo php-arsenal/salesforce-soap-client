@@ -57,7 +57,7 @@ class SoapClientFactory
      * @param string $environment
      * @return SoapClient
      */
-    public function factory($wsdl, array $soapOptions = array(), $environment)
+    public function factory($wsdl, array $soapOptions = array(), $environment = 'prod')
     {
         $defaults = array(
             'trace'      => 1,
