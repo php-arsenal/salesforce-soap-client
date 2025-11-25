@@ -12,6 +12,13 @@ use Psr\Log\LoggerInterface;
  */
 class ClientBuilder
 {
+    protected string $wsdl;
+    protected string $username;
+    protected string $password;
+    protected string $token;
+    protected array $soapOptions;
+    protected string $environment;
+
     /**
      * @var LoggerInterface $log
      */
