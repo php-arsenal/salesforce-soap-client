@@ -56,9 +56,8 @@ class RecordIterator implements \SeekableIterator, \Countable
 
     /**
      * {@inheritdoc}
-     * @return object
      */
-    public function current()
+    public function current(): mixed
     {
         return $this->current;
     }
@@ -96,10 +95,8 @@ class RecordIterator implements \SeekableIterator, \Countable
 
     /**
      * {@inheritdoc}
-     *
-     * @return int|null
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->pointer;
     }
@@ -107,7 +104,7 @@ class RecordIterator implements \SeekableIterator, \Countable
     /**
      * {@inheritdoc}
      */
-    public function next()
+    public function next(): void
     {
         $this->pointer++;
     }
@@ -115,17 +112,15 @@ class RecordIterator implements \SeekableIterator, \Countable
     /**
      * {@inheritdoc}
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->pointer = 0;
     }
 
     /**
      * {@inheritdoc}
-     *
-     * @return boolean
      */
-    public function valid()
+    public function valid(): bool
     {
         return null != $this->getObjectAt($this->pointer);
     }
@@ -167,20 +162,22 @@ class RecordIterator implements \SeekableIterator, \Countable
 
     /**
      * Get total number of records returned from Salesforce
-     *
-     * @return int
      */
-    public function count()
+    public function count(): int
     {
         return $this->queryResult->getSize();
     }
 
     /**
-     * @param int $position
+     * Seek to position and return object at that position
+     *
+     * Note: this differs from standard SeekableIterator::seek() which returns void.
+     * This implementation returns the object for convenience.
      */
-    public function seek($position)
+    public function seek(int $offset): void
     {
-        return $this->getObjectAt($position);
+        $this->pointer = $offset;
+        $this->getObjectAt($offset);
     }
 
     /**
